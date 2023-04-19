@@ -16,14 +16,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    main.cpp \
-    src/MainWindow.cpp
+    src/main.cpp \
+    src/AppRunner/AppRunner.cpp \
+    src/AppRunner/AppRunnerClientDelegate.cpp \
+    src/AppRunner/AppRunnerDelegateFactory.cpp \
+    src/AppRunner/AppRunnerServerDelegate.cpp \
+    src/AppRunner/IAppRunnerDelegate.cpp
 
 HEADERS += \
-    src/MainWindow.h
-
-FORMS += \
-    ui/MainWindow.ui
+    src/AppRunner/AppRunner.h \
+    src/AppRunner/AppRunnerClientDelegate.h \
+    src/AppRunner/AppRunnerDelegateFactory.h \
+    src/AppRunner/AppRunnerServerDelegate.h \
+    src/AppRunner/AppRunnerType.h \
+    src/AppRunner/IAppRunnerDelegate.h
 
 INCLUDEPATH += \
     src

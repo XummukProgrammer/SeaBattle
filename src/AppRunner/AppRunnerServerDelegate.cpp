@@ -16,6 +16,6 @@ void AppRunnerServerDelegate::Run()
 {
     qDebug() << "Run server application";
 
-    Server server;
-    server.Start();
+    Server* server = new Server();
+    server->Start();
 }

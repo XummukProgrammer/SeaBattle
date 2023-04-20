@@ -16,6 +16,6 @@ void AppRunnerClientDelegate::Run()
 {
     qDebug() << "Run client application";
 
-    Client client;
-    client.Connect();
+    Client* client = new Client();
+    client->Connect();
 }

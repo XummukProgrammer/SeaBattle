@@ -1,7 +1,7 @@
 #include "Client.h"
 
 #include <Common/TcpSockerUtils.h>
-#include <Client/ClientCommandType.h>
+#include <Server/ServerCommandType.h>
 
 #include <QHostAddress>
 
@@ -83,7 +83,7 @@ void Client::OnReadyRead()
         OnAuthorized(id);
     };
 
-    proxy.Begin(_pSocket).AddCommandHandler(static_cast<quint16>(ClientCommandType::Authorized), onAuthorized).End();
+    proxy.Begin(_pSocket).AddCommandHandler(static_cast<quint16>(ServerCommandType::ClientAuthorized), onAuthorized).End();
 }
 
 void Client::OnAuthorized(int id)

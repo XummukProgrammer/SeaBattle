@@ -36,7 +36,8 @@ HEADERS += \
     src/Client/Client.h \
     src/Client/ClientCommandType.h \
     src/Common/TcpSockerUtils.h \
-    src/Server/Server.h
+    src/Server/Server.h \
+    src/Server/ServerCommandType.h
 
 INCLUDEPATH += \
     src

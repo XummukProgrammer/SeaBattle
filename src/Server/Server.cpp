@@ -1,7 +1,7 @@
 #include "Server.h"
 
 #include <Common/TcpSockerUtils.h>
-#include <Client/ClientCommandType.h>
+#include <Server/ServerCommandType.h>
 
 #include <QTcpSocket>
 
@@ -49,7 +49,7 @@ void Server::OnClientConnected()
     _clients.push_back(pClient);
 
     TcpSocketOutProxy proxy;
-    proxy.Begin(pSocket, static_cast<quint16>(ClientCommandType::Authorized)).Write(pClient->GetId()).End();
+    proxy.Begin(pSocket, static_cast<quint16>(ServerCommandType::ClientAuthorized)).Write(pClient->GetId()).End();
 }
 
 void Server::OnClientDisconnected()

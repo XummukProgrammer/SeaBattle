@@ -18,10 +18,8 @@ public:
     void Disconnect();
     bool IsConnected() const;
 
-    void SetId(int id);
-    int GetId() const;
-
     void SetSocket(QTcpSocket* pSocket);
+    QTcpSocket* GetSocket() const;
 
     QString GetIPPortString() const;
 
@@ -31,10 +29,6 @@ public slots:
     void OnReadyRead();
 
 private:
-    void OnAuthorized(int id);
-
-private:
-    int _id;
     QTcpSocket* _pSocket;
     bool _isConnected;
 };

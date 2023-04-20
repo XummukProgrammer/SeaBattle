@@ -2,6 +2,7 @@
 
 #include <Common/TcpSockerUtils.h>
 #include <Server/ServerCommandType.h>
+#include <Client/ClientCommandType.h>
 
 #include <QHostAddress>
 
@@ -11,7 +12,6 @@ Client::Client(QObject* parent)
     : QObject(parent)
     , _pSocket(nullptr)
     , _isConnected(false)
-    , _id(0)
 {
 }
 
@@ -38,20 +38,15 @@ bool Client::IsConnected() const
     return _isConnected;
 }
 
-void Client::SetId(int id)
-{
-    _id = id;
-}
-
-int Client::GetId() const
-{
-    return _id;
-}
-
 void Client::SetSocket(QTcpSocket* pSocket)
 {
     _pSocket = pSocket;
     _isConnected = true;
+}
+
+QTcpSocket* Client::GetSocket() const
+{
+    return _pSocket;
 }
 
 QString Client::GetIPPortString() const
@@ -73,20 +68,5 @@ void Client::OnDisconnected()
 
 void Client::OnReadyRead()
 {
-    TcpSocketInProxy proxy;
-
-    auto onAuthorized = [this, &proxy]()
-    {
-        int id;
-        proxy.Read(id);
-
-        OnAuthorized(id);
-    };
-
-    proxy.Begin(_pSocket).AddCommandHandler(static_cast<quint16>(ServerCommandType::ClientAuthorized), onAuthorized).End();
 }
 
-void Client::OnAuthorized(int id)
-{
-    SetId(id);
-}

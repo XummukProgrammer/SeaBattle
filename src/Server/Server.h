@@ -17,14 +17,16 @@ public:
 public:
     void Start();
 
+    Client* GetClientFromSocket(QTcpSocket* pSocket) const;
+
 public slots:
     void OnClientConnected();
     void OnClientDisconnected();
+    void OnClientReadyRead();
 
 private:
     QTcpServer* _pServer;
     QVector<Client*> _clients;
-    int _clientId;
 };
 
 #endif // SERVER_H

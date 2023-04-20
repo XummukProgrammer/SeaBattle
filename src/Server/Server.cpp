@@ -1,5 +1,8 @@
 #include "Server.h"
 
+#include <Common/TcpSockerUtils.h>
+#include <Client/ClientCommandType.h>
+
 #include <QTcpSocket>
 
 Server::Server(QObject* parent)
@@ -44,6 +47,9 @@ void Server::OnClientConnected()
     qDebug() << "Client connected: " << pClient->GetIPPortString();
 
     _clients.push_back(pClient);
+
+    TcpSocketOutProxy proxy;
+    proxy.Begin(pSocket, static_cast<quint16>(ClientCommandType::Authorized)).Write(pClient->GetId()).End();
 }
 
 void Server::OnClientDisconnected()

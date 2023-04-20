@@ -1,6 +1,11 @@
 #include "Client.h"
 
+#include <Common/TcpSockerUtils.h>
+#include <Client/ClientCommandType.h>
+
 #include <QHostAddress>
+
+#include <QDebug>
 
 Client::Client(QObject* parent)
     : QObject(parent)
@@ -19,6 +24,7 @@ void Client::Connect()
     _pSocket = new QTcpSocket();
     connect(_pSocket, &QTcpSocket::connected, this, &Client::OnConnected);
     connect(_pSocket, &QTcpSocket::disconnected, this, &Client::OnDisconnected);
+    connect(_pSocket, &QTcpSocket::readyRead, this, &Client::OnReadyRead);
     _pSocket->connectToHost("127.0.0.1", 3214);
 }
 
@@ -63,4 +69,24 @@ void Client::OnConnected()
 void Client::OnDisconnected()
 {
     _isConnected = false;
+}
+
+void Client::OnReadyRead()
+{
+    TcpSocketInProxy proxy;
+
+    auto onAuthorized = [this, &proxy]()
+    {
+        int id;
+        proxy.Read(id);
+
+        OnAuthorized(id);
+    };
+
+    proxy.Begin(_pSocket).AddCommandHandler(static_cast<quint16>(ClientCommandType::Authorized), onAuthorized).End();
+}
+
+void Client::OnAuthorized(int id)
+{
+    SetId(id);
 }

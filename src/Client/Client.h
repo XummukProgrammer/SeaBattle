@@ -28,6 +28,10 @@ public:
 public slots:
     void OnConnected();
     void OnDisconnected();
+    void OnReadyRead();
+
+private:
+    void OnAuthorized(int id);
 
 private:
     int _id;

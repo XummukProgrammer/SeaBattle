@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/AppRunner/AppRunnerSettings.cpp \
     src/Client/Client.cpp \
+    src/Client/Logic/ClientGameLogic.cpp \
     src/Client/Visual/ClientMainWindow.cpp \
     src/Common/TcpSockerUtils.cpp \
     src/Server/Server.cpp \
@@ -38,6 +39,7 @@ HEADERS += \
     src/AppRunner/IAppRunnerDelegate.h \
     src/Client/Client.h \
     src/Client/ClientCommandType.h \
+    src/Client/Logic/ClientGameLogic.h \
     src/Client/Visual/ClientMainWindow.h \
     src/Common/TcpSockerUtils.h \
     src/Server/Server.h \

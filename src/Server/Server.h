@@ -25,6 +25,9 @@ public slots:
     void OnClientReadyRead();
 
 private:
+    void OnClientInputLocked(Client* pClient);
+
+private:
     QTcpServer* _pServer;
     QVector<Client*> _clients;
 };

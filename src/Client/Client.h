@@ -23,10 +23,18 @@ public:
 
     QString GetIPPortString() const;
 
+public:
+    void OnInputLocked();
+
+signals:
+    void InputUnlock();
+
 public slots:
     void OnConnected();
     void OnDisconnected();
     void OnReadyRead();
+
+    void OnInputUnlock();
 
 private:
     QTcpSocket* _pSocket;

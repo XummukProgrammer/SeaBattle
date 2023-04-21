@@ -3,6 +3,7 @@
 
 enum class ClientCommandType
 {
+    InputLocked = 1000
 };
 
 #endif // CLIENTCOMMANDTYPE_H

@@ -56,6 +56,12 @@ QString Client::GetIPPortString() const
     return ipAddress + ":" + QString::number(port);
 }
 
+void Client::OnInputLocked()
+{
+    TcpSocketOutProxy proxy;
+    proxy.Begin(_pSocket, static_cast<quint16>(ClientCommandType::InputLocked)).End();
+}
+
 void Client::OnConnected()
 {
     _isConnected = true;
@@ -69,4 +75,10 @@ void Client::OnDisconnected()
 void Client::OnReadyRead()
 {
 }
+
+void Client::OnInputUnlock()
+{
+    emit InputUnlock();
+}
+
 

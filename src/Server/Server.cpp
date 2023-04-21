@@ -81,5 +81,21 @@ void Server::OnClientDisconnected()
 
 void Server::OnClientReadyRead()
 {
+    auto pSocket = qobject_cast<QTcpSocket*>(sender());
+
+    TcpSocketInProxy proxy;
+
+    auto onClientInputLocked = [this, pSocket]()
+    {
+        auto pClient = GetClientFromSocket(pSocket);
+        OnClientInputLocked(pClient);
+    };
+
+    proxy.Begin(pSocket).AddCommandHandler(static_cast<quint16>(ClientCommandType::InputLocked), onClientInputLocked).End();
+}
+
+void Server::OnClientInputLocked(Client* pClient)
+{
+    qDebug() << "Client input locked: " << pClient->GetIPPortString();
 }
 

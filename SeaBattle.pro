@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     src/AppRunner/AppRunnerSettings.cpp \
     src/Client/Client.cpp \
+    src/Client/Visual/ClientMainWindow.cpp \
     src/Common/TcpSockerUtils.cpp \
     src/Server/Server.cpp \
     src/main.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     src/AppRunner/IAppRunnerDelegate.h \
     src/Client/Client.h \
     src/Client/ClientCommandType.h \
+    src/Client/Visual/ClientMainWindow.h \
     src/Common/TcpSockerUtils.h \
     src/Server/Server.h \
     src/Server/ServerCommandType.h
@@ -51,3 +53,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     res/Application.qrc
+
+FORMS += \
+    ui/ClientMainWindow.ui

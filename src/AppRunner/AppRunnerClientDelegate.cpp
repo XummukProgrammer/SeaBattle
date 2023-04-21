@@ -2,6 +2,7 @@
 
 #include <AppRunner/AppRunner.h>
 #include <Client/Client.h>
+#include <Client/Visual/ClientMainWindow.h>
 
 #include <QDebug>
 
@@ -19,6 +20,9 @@ int AppRunnerClientDelegate::Exec()
 
     Client client;
     client.Connect();
+
+    ClientMainWindow window;
+    window.show();
 
     return g_AppRunner.GetApplication()->exec();
 }

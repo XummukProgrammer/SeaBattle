@@ -2,8 +2,10 @@
 #define CLIENTMAINWINDOW_H
 
 #include <Client/Logic/ClientGameLogic.h>
+#include <Client/Visual/ClientScene.h>
 
 #include <QMainWindow>
+#include <QGraphicsScene>
 
 namespace Ui {
 class ClientMainWindow;
@@ -34,6 +36,7 @@ public slots:
 private:
     Ui::ClientMainWindow* _pUi;
     ClientGameLogic* _pLogic;
+    ClientScene _scene;
 };
 
 #endif // CLIENTMAINWINDOW_H

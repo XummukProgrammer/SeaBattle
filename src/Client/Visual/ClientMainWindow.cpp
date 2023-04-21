@@ -1,12 +1,15 @@
 #include "src/Client/Visual/ClientMainWindow.h"
 #include "ui_ClientMainWindow.h"
 
+#include <QGraphicsTextItem>
+
 ClientMainWindow::ClientMainWindow(QWidget *parent)
     : QMainWindow(parent)
     , _pUi(new Ui::ClientMainWindow)
     , _pLogic(nullptr)
 {
     _pUi->setupUi(this);
+    _scene.SetGraphicsView(_pUi->graphicsView);
 }
 
 ClientMainWindow::~ClientMainWindow()
@@ -41,15 +44,12 @@ void ClientMainWindow::mouseMoveEvent(QMouseEvent* pEvent)
 
 void ClientMainWindow::OnClientMoveCompleted()
 {
-    _pUi->label->setText("OnClientMoveCompleted");
 }
 
 void ClientMainWindow::OnClientInputLocked()
 {
-    _pUi->label->setText("OnClientInputLocked");
 }
 
 void ClientMainWindow::OnClientInputUnlocked()
 {
-    _pUi->label->setText("OnClientInputUnlocked");
 }

@@ -9,7 +9,7 @@ public:
     virtual ~IAppRunnerDelegate();
 
 public:
-    virtual void Run() = 0;
+    virtual int Exec() = 0;
 };
 
 #endif // IAPPRUNNERDELEGATE_H

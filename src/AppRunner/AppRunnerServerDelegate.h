@@ -10,7 +10,7 @@ public:
     ~AppRunnerServerDelegate();
 
 public:
-    void Run() override;
+    int Exec() override;
 };
 
 #endif // APPRUNNERSERVERDELEGATE_H

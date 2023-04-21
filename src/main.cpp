@@ -4,10 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-
-    AppRunner appRunner;
-    appRunner.Run(AppRunnerType::Server);
-
-    return a.exec();
+    QApplication app(argc, argv);
+    g_AppRunner.SetApplication(&app);
+    return g_AppRunner.Exec(AppRunnerType::Client);
 }

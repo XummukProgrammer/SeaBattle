@@ -1,5 +1,6 @@
 #include "AppRunnerClientDelegate.h"
 
+#include <AppRunner/AppRunner.h>
 #include <Client/Client.h>
 
 #include <QDebug>
@@ -12,10 +13,12 @@ AppRunnerClientDelegate::~AppRunnerClientDelegate()
 {
 }
 
-void AppRunnerClientDelegate::Run()
+int AppRunnerClientDelegate::Exec()
 {
     qDebug() << "Run client application";
 
-    Client* client = new Client();
-    client->Connect();
+    Client client;
+    client.Connect();
+
+    return g_AppRunner.GetApplication()->exec();
 }

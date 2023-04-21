@@ -10,7 +10,7 @@ public:
     ~AppRunnerClientDelegate();
 
 public:
-    void Run() override;
+    int Exec() override;
 };
 
 #endif // APPRUNNERCLIENTDELEGATE_H

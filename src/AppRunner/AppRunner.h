@@ -2,6 +2,7 @@
 #define APPRUNNER_H
 
 #include <AppRunner/AppRunnerType.h>
+#include <QApplication>
 
 class AppRunner
 {
@@ -10,7 +11,15 @@ public:
     ~AppRunner();
 
 public:
-    void Run(const AppRunnerType& type);
+    void SetApplication(QApplication* pApplication);
+    QApplication* GetApplication() const;
+
+    int Exec(const AppRunnerType& type);
+
+private:
+    QApplication* _pApplication;
 };
+
+extern AppRunner g_AppRunner;
 
 #endif // APPRUNNER_H

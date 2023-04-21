@@ -2,7 +2,10 @@
 
 #include <AppRunner/AppRunnerDelegateFactory.h>
 
+AppRunner g_AppRunner;
+
 AppRunner::AppRunner()
+    : _pApplication(nullptr)
 {
 }
 
@@ -10,13 +13,25 @@ AppRunner::~AppRunner()
 {
 }
 
-void AppRunner::Run(const AppRunnerType& type)
+void AppRunner::SetApplication(QApplication* pApplication)
+{
+    _pApplication = pApplication;
+}
+
+QApplication* AppRunner::GetApplication() const
+{
+    return _pApplication;
+}
+
+int AppRunner::Exec(const AppRunnerType& type)
 {
     AppRunnerDelegateFactory factory;
     auto delegate = factory.CreateDelegate(type);
     if (delegate)
     {
-        delegate->Run();
+        int result = delegate->Exec();
         delete delegate;
+        return result;
     }
+    return 1;
 }

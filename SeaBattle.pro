@@ -21,6 +21,7 @@ SOURCES += \
     src/Client/Logic/ClientGameLogic.cpp \
     src/Client/Visual/ClientMainWindow.cpp \
     src/Common/TcpSockerUtils.cpp \
+    src/Server/Logic/ServerGameLogic.cpp \
     src/Server/Server.cpp \
     src/main.cpp \
     src/AppRunner/AppRunner.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     src/Client/Logic/ClientGameLogic.h \
     src/Client/Visual/ClientMainWindow.h \
     src/Common/TcpSockerUtils.h \
+    src/Server/Logic/ServerGameLogic.h \
     src/Server/Server.h \
     src/Server/ServerCommandType.h
 

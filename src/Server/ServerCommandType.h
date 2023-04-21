@@ -3,6 +3,7 @@
 
 enum class ServerCommandType
 {
+    ClientUnlock = 10000
 };
 
 #endif // SERVERCOMMANDTYPE_H

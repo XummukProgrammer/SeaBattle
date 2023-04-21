@@ -2,6 +2,7 @@
 
 #include <AppRunner/AppRunner.h>
 #include <Server/Server.h>
+#include <Server/Logic/ServerGameLogic.h>
 
 #include <QDebug>
 
@@ -19,6 +20,9 @@ int AppRunnerServerDelegate::Exec()
 
     Server server;
     server.Start();
+
+    ServerGameLogic logic;
+    logic.SetServer(&server);
 
     return g_AppRunner.GetApplication()->exec();
 }

@@ -19,6 +19,8 @@ public:
 
     Client* GetClientFromSocket(QTcpSocket* pSocket) const;
 
+    void ClientInputUnlock(Client* pClient);
+
 public slots:
     void OnClientConnected();
     void OnClientDisconnected();
@@ -26,6 +28,10 @@ public slots:
 
 private:
     void OnClientInputLocked(Client* pClient);
+
+signals:
+    void ClientAdded(Client* pClient);
+    void ClientInputLocked(Client* pClient);
 
 private:
     QTcpServer* _pServer;

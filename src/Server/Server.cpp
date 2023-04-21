@@ -44,6 +44,14 @@ Client* Server::GetClientFromSocket(QTcpSocket *pSocket) const
     return nullptr;
 }
 
+void Server::ClientInputUnlock(Client *pClient)
+{
+    qDebug() << "Client input unlock: " << pClient->GetIPPortString();
+
+    TcpSocketOutProxy proxy;
+    proxy.Begin(pClient->GetSocket(), static_cast<quint16>(ServerCommandType::ClientUnlock)).End();
+}
+
 void Server::OnClientConnected()
 {
     auto pSocket = _pServer->nextPendingConnection();
@@ -55,6 +63,7 @@ void Server::OnClientConnected()
     connect(pSocket, &QTcpSocket::readyRead, this, &Server::OnClientReadyRead);
 
     _clients.push_back(pClient);
+    emit ClientAdded(pClient);
 
     qDebug() << "Client connected: " << pClient->GetIPPortString();
 }
@@ -91,11 +100,15 @@ void Server::OnClientReadyRead()
         OnClientInputLocked(pClient);
     };
 
-    proxy.Begin(pSocket).AddCommandHandler(static_cast<quint16>(ClientCommandType::InputLocked), onClientInputLocked).End();
+    proxy.Begin(pSocket)
+            .AddCommandHandler(static_cast<quint16>(ClientCommandType::InputLocked), onClientInputLocked)
+            .End();
 }
 
 void Server::OnClientInputLocked(Client* pClient)
 {
-    qDebug() << "Client input locked: " << pClient->GetIPPortString();
+    qDebug() << "Client input lock: " << pClient->GetIPPortString();
+
+    emit ClientInputLocked(pClient);
 }
 

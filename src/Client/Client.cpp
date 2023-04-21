@@ -74,11 +74,19 @@ void Client::OnDisconnected()
 
 void Client::OnReadyRead()
 {
+    TcpSocketInProxy proxy;
+
+    auto onInputUnlock = [this]()
+    {
+        OnInputUnlock();
+    };
+
+    proxy.Begin(_pSocket)
+            .AddCommandHandler(static_cast<quint16>(ServerCommandType::ClientUnlock), onInputUnlock)
+            .End();
 }
 
 void Client::OnInputUnlock()
 {
     emit InputUnlock();
 }
-
-

@@ -26,17 +26,23 @@ void ClientGameLogic::MousePress()
 
 void ClientGameLogic::OnInputLock()
 {
-    _isInputLocked = true;
-    _pClient->OnInputLocked();
+    if (!_isInputLocked)
+    {
+        _isInputLocked = true;
+        _pClient->OnInputLocked();
 
-    emit InputLocked();
+        emit InputLocked();
+    }
 }
 
 void ClientGameLogic::OnInputUnlock()
 {
-    _isInputLocked = false;
+    if (_isInputLocked)
+    {
+        _isInputLocked = false;
 
-    emit InputUnlocked();
+        emit InputUnlocked();
+    }
 }
 
 void ClientGameLogic::OnMousePress()

@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/Flavour">
+        <file>Runner/Settings.json</file>
+    </qresource>
+</RCC>

@@ -6,5 +6,5 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     g_AppRunner.SetApplication(&app);
-    return g_AppRunner.Exec(AppRunnerType::Client);
+    return g_AppRunner.Exec();
 }

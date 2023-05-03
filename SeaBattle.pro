@@ -19,6 +19,7 @@ SOURCES += \
     src/AppRunner/AppRunnerSettings.cpp \
     src/Client/Client.cpp \
     src/Client/Logic/ClientGameLogic.cpp \
+    src/Client/Visual/ClientField.cpp \
     src/Client/Visual/ClientMainWindow.cpp \
     src/Client/Visual/ClientScene.cpp \
     src/Common/TcpSockerUtils.cpp \
@@ -42,6 +43,7 @@ HEADERS += \
     src/Client/Client.h \
     src/Client/ClientCommandType.h \
     src/Client/Logic/ClientGameLogic.h \
+    src/Client/Visual/ClientField.h \
     src/Client/Visual/ClientMainWindow.h \
     src/Client/Visual/ClientScene.h \
     src/Common/TcpSockerUtils.h \
@@ -61,4 +63,5 @@ RESOURCES += \
     res/Application.qrc
 
 FORMS += \
+    ui/ClientField.ui \
     ui/ClientMainWindow.ui

@@ -2,4 +2,7 @@
     <qresource prefix="/Flavour">
         <file>Runner/Settings.json</file>
     </qresource>
+    <qresource prefix="/Textures">
+        <file alias="test">Textures/test.png</file>
+    </qresource>
 </RCC>
